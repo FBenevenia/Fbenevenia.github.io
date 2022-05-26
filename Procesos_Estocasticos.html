@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <title>Investigación Operativa</title>
+    <link rel="shortcut icon" href="./img/favicon.jpg" type="image/x-icon">
+    
+    <script src="https://kit.fontawesome.com/3a6a7a1eda.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="./CSS/estilos.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+
+    <header>
+        <div id="banner">
+            <img src="./img/banner.png" alt="banner" id="img_banner">
+        </div>
+
+        <div class="menu_bar">
+            <a href="#" class="bt-menu"><i class="fa-solid fa-bars"></i>Menu</a>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="./index.html"><i class="fa fa-fw fa-home"></i> Home</a></li>
+                <li class="submenu">
+                    <a href="./presentacion.html"><i class="fa fa-fw fa-search"></i> Contenido Teórico<i class="fa-solid fa-caret-down"></i> </a>
+                    <ul class="children">
+                        <li><a href="./Procesos_Estocasticos.html">Procesos Estocásticos</a></li>
+                        <li><a href="./Simulacion.html">Simulación</a></li>
+                    </ul>
+                </li>
+                <li><a href="./formulario.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Procesos Estocásticos</h1>
+    <main id="main3">
+
+        <section id="info1">
+            <div class="container1">
+                <h2 class="titulo" id="Introduccion">Introducción</h2>
+                <p class="apunte">Las cadenas de Markov tienen la propiedad particular de que las probabilidades que describen la forma en que el proceso evolucionará en el futuro depende sólo del estado actual en que se encuentra el proceso y, por lo tanto, son independientes de los eventos ocurridos en el pasado. </p>
+            </div>
+            <br><br>
+            <div class="container1">
+                <h2 class="titulo" id="Definiciones">Definiciones</h2>
+                <p class="apunte">Un proceso estocástico es un modelo matemático que describe el comportamiento de un sistema dinámico, sometido a un fenómeno de naturaleza aleatoria. La presencia de un fenómeno aleatorio hace que el sistema evolucione según un parámetro, normalmente el tiempo, que cambia de estado en forma probabilística. En otras palabras, al realizar una serie de observaciones del proceso en diferentes ocasiones y bajo idénticas condiciones, los resultados de las observaciones serán, en general, diferentes. Por esto es necesario definir:
+                    x=f(t) → Variable aleatoria (representa una característica mensurable de los distintos estados que puede tomar el sistema)
+                    p(x,t) → Probabilidad asociada a ‘x’ (representa la probabilidad del estado asociado ‘x’ siendo ‘t’ el tiempo)
+                    </p>
+            </div>
+            <br><br>
+            <div class="container1">
+                <h2 class="titulo" id="Clasificacion">Clasificación de Procesos Estocásticos</h2>
+                <img src="./img/PE1.png" alt="clasificacion" id="anexo1">
+                <p class="apunte">En los Procesos aleatorios puros se cumple P(x_(t+Δt),t+Δt). Es decir, la probabilidad de que el sistema se encuentre en un estado cualquiera xt+𝛥t es independiente de los estados anteriores. Teniendo en cuenta lo antes mencionado, es un proceso sin memoria porque la probabilidad de un estado no depende de la historia de los estados en etapas anteriores. Ej. Control de la calidad de la materia prima recibida en lotes independientes muestreados al azar.</p>
+                <br>
+                <p class="apunte">En los Procesos con memoria o de orden superior se necesita saber más que el estado inmediatamente anterior para predecir qué pasará en un estado futuro. Se cumple lo siguiente:</p>
+                <p class="apunte">P(x_(t+Δt),t+Δt)= P(x_(t+Δt),t+Δt/x_(t+Δtn),t+〖Δt〗_n )</p>
+                <br>
+                <p class="apunte">En cambio, en el caso de un Proceso Markoviano, se cumple que:</p>
+                <p class="apunte">P(x_(t+Δt),t+Δt)= P(x_(t+Δt),t+Δt/x_t,t)</p>
+                <br>
+                <p class="apunte">Es decir, Markov propone restringir el problema en n=1. De esta forma, la probabilidad de que el sistema esté en un estado cualquiera x_(t+Δt) en t+Δt dependerá, y se podrá calcular, conociendo el estado inmediatamente anterior x_t</p>
+                <p class="apunte">A estos procesos se los suele caracterizar como procesos en los cuales “dado el presente (x_t) el futuro (x_(t+Δt)) es independiente del pasado (x_(t-Δtn))”</p>
+                <p class="apunte">Nos concentraremos en los Procesos Markovianos. Dependiendo del tipo de variable podremos decir que estamos en presencia de un Proceso de Markov cuando la variable aleatoria representa una magnitud continua (fuerza, tensión, energía eléctrica, etc.). En estos casos, el espacio de los estados de ‘x’ deberá ser un intervalo de números reales. En cambio cuando la variable aleatoria representa una magnitud discreta (cantidad de personas, de materiales, etc.), el espacio de estados de ‘x’ deberá ser una secuencia finita o numéricamente infinita de enteros y se hablará de una Cadena de Markov.</p>
+                <p class="apunte">Dentro de las llamadas cadenas de Markov, si las observaciones se realizan en cualquier instante del continuo (t≥0), se habla de una Cadena de Markov de parámetro t (tiempo) continuo, mientras que en otras ocasiones las observaciones se efectúan en determinados instantes de tiempo y por lo tanto diremos que estamos en presencia de una Cadena de Markov de parámetro t (tiempo) discreto.</p>
+                <p class="apunte">Con referencia específicamente a las cadenas de Markov de parámetros de tiempo discretos o continuos, diremos que son Homogéneas las cadenas cuya probabilidad condicional de transición del estado ‘i’ al estado ‘j’ sólo depende del un 𝛥t</p>
+                <p class="apunte">Es decir, las probabilidades de transición son estacionarias lo que implica que no cambian con el tiempo.</p>
+            </div>
+        </section>
+        <aside>
+            <ul>
+                <li><a href="#Introduccion"><i class="fa-solid fa-arrow-right"></i> Introducción</a></li>
+                <li><a href="#Definiciones"><i class="fa-solid fa-arrow-right"></i> Definiciones</a></li>
+                <li><a href="#Clasificacion"><i class="fa-solid fa-arrow-right"></i> Clasificación</a></li>
+            </ul>
+        </aside>    
+    </main>
+    <footer>
+        <nav>
+            <a href="https://facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </nav>
+        <p>Derechos Reservados 2022</p>
+        <p>Autor: Florencia Benevenia</p>
+    </footer>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="./JS/main.js"></script>
+
+</body>
+</html>

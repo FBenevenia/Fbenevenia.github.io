@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <title>Investigación Operativa</title>
+    <link rel="shortcut icon" href="./img/favicon.jpg" type="image/x-icon">
+    
+    <script src="https://kit.fontawesome.com/3a6a7a1eda.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="./CSS/estilos.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+    <header>
+        <div id="banner">
+            <img src="./img/banner.png" alt="banner" id="img_banner">
+        </div>
+        <div class="menu_bar">
+            <a href="#" class="bt-menu"><i class="fa-solid fa-bars"></i>Menu</a>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="./index.html"><i class="fa fa-fw fa-home"></i> Home</a></li>
+                <li class="submenu">
+                    <a href="./presentacion.html"><i class="fa fa-fw fa-search"></i> Contenido Teórico<i class="fa-solid fa-caret-down"></i> </a>
+                    <ul class="children">
+                        <li><a href="./Procesos_Estocasticos.html">Procesos Estocásticos</a></li>
+                        <li><a href="./Simulacion.html">Simulación</a></li>
+                    </ul>
+                </li>
+                <li><a href="./formulario.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2 id="contacto">Contacto</h2>
+        <form action="" class="formulario" id="formulario">
+
+            <!-- Grupo Nombre-->
+            <div class="formulario__grupo" id="grupo__nombre">
+                <label for="nombre" class="formulario__label">Nombre: </label>
+                <div class="formulario__grupo-input">
+                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese aquí su nombre">
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                </div>
+            <p class="formulario__input-error">Su nombre debe tener entre 1 y 40 dígitos y solo puede usar letras y espacios, puede llevar acentos.</p>
+            </div>
+
+            <!-- Grupo Apellido-->
+            <div class="formulario__grupo" id="grupo__apellido">
+                <label for="apellido" class="formulario__label">Apellido: </label>
+                <div class="formulario__grupo-input">
+                <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Ingrese aquí su apellido">
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                </div>
+            <p class="formulario__input-error">Su apellido debe tener entre 1 y 40 dígitos y solo puede usar letras y espacios, puede llevar acentos.</p>
+            </div>
+
+            <!-- Grupo Telefono-->
+            <div class="formulario__grupo" id="grupo__telefono">
+                <label for="telefono" class="formulario__label">Teléfono: </label>
+                <div class="formulario__grupo-input">
+                <input type="tel" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese aquí su número de teléfono">
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                </div>
+            <p class="formulario__input-error">No utilizar guiones, solo se aceptan entre 7 y 14 números</p>
+            </div>
+
+            <!-- Grupo Mail-->
+            <div class="formulario__grupo" id="grupo__mail">
+                <label for="mail" class="formulario__label">Mail: </label>
+                <div class="formulario__grupo-input">
+                <input type="email" class="formulario__input" name="mail" id="mail" placeholder="Ingrese aquí su correo electrónico">
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                </div>
+            <p class="formulario__input-error">Por favor ingresar una dirección de correo electrónica correcta</p>
+            </div>
+
+            <!-- Grupo Asunto-->
+            <div class="formulario__grupo2" id="grupo__asunto">
+                <label for="asunto" class="formulario__label">Asunto: </label>
+                <div class="formulario__grupo-input">
+                <input type="text" class="formulario__input" name="asunto" id="asunto" placeholder="Ingrese aquí el motivo de su consulta">
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                </div>
+            <p class="formulario__input-error">Por favor utilizar hasta 50 dígitos.</p>
+            </div>
+
+            <!-- Grupo Descripción-->
+            <div class="formulario__grupo2" id="grupo__descripcion">
+                <label for="descripcion" class="formulario__label">Descripción: </label>
+                <div class="formulario__grupo-input">
+                <textarea class="formulario__input" name="descripcion" rows="10" cols="30" id="descripcion" placeholder="Ingrese aquí en detalle su consulta"></textarea>
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                </div>
+            <p class="formulario__input-error">Por favor utilizar hasta 500 dígitos.</p>
+            </div>
+
+            <div class="formulario__mensaje" id="formulario__mensaje">
+                <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error: </b>Por favor completa todos los campos del formulario correctamente.</p>
+            </div>
+
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit" class="formulario__btn">Enviar</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado correctamente.</p>
+            </div>
+        </form>
+    </main>
+
+    <br><br>
+    <footer>
+        <nav>
+            <a href="https://facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </nav>
+        <p>Derechos Reservados 2022</p>
+        <p>Autor: Florencia Benevenia</p>
+    </footer>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="./JS/main.js"></script>
+
+</body>
+</html>
