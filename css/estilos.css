@@ -23,7 +23,17 @@ img#img_banner{
 }
 
 /*menu responsivo*/
-.menu_bar{
+.checkbtn{
+    cursor: pointer;
+    font-size: 40px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: none;
+}
+
+#check{
     display: none;
 }
 
@@ -422,49 +432,36 @@ body{
 }
 
 /*cambio de menu*/
-.menu_bar{
+.checkbtn{
     display: block;
     width: 100%;
     position: fixed;
     top: 150px;
-    background: #ccc;
-    z-index: 1000;
-}
-
-.menu_bar .bt-menu{
-    display: block;
-    padding: 20px;
     background: #555;
-    color: white;
-    overflow: hidden;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 25px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    z-index: 1000;
+    padding-left: 40px;
 }
 
-.menu_bar i {
-    float: right;
-    font-size: 40px;
-}
-
-.navbar {
+.navbar ul{
     width: 80%;
     position: fixed;
     height: calc(100% - 230px);
     margin: 0;
     left: -100%;
     overflow: scroll;
+    background: #555;
 }
 
-.navbar::-webkit-scrollbar{
+#check:checked ~ ul{
+    left: 0;
+}
+
+.navbar ul::-webkit-scrollbar{
     width: 12px;
     height: calc(100% - 80px);
 }
 
-.navbar::-webkit-scrollbar-thumb{
+.navbar ul::-webkit-scrollbar-thumb{
     background-color: #04AA6D;
     border-radius: 20px;
     border: 1px solid black;
@@ -479,16 +476,15 @@ body{
     display: block;
 }
 
-.navbar ul li:hover .children{
-    display: none;
-}
-
 .navbar ul li .children{
     width: 100%;
     position: relative;
+    display: block;
+    left: 0;
 }
 
 header nav ul li .children li a{
+    display: block;
     margin-left: 20px;
 }
 
@@ -547,78 +543,61 @@ body{
     padding-top: 80px;
 }
 
-.menu_bar{
+/*cambio de menu*/
+.checkbtn{
     display: block;
     width: 100%;
     position: fixed;
     top: 0px;
-    background: #ccc;
-    z-index: 1000;
-}
-        
-.menu_bar .bt-menu{
-    display: block;
-    padding: 20px;
     background: #555;
-    color: white;
-    overflow: hidden;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 25px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    z-index: 1000;
+    padding-left: 40px;
 }
-        
-.menu_bar i {
-    float: right;
-    font-size: 40px;
-}
-        
-.navbar {
+
+.navbar ul{
     width: 80%;
     position: fixed;
-    height: calc(100% - 230px);
+    height: 50%;
     margin: 0;
     left: -100%;
     overflow: scroll;
+    background: #555;
 }
 
-.navbar::-webkit-scrollbar{
+#check:checked ~ ul{
+    left: 0;
+}
+
+.navbar ul::-webkit-scrollbar{
     width: 12px;
-    height: calc(100% - 80px);
+    height: 100%;
 }
 
-.navbar::-webkit-scrollbar-thumb{
+.navbar ul::-webkit-scrollbar-thumb{
     background-color: #04AA6D;
     border-radius: 20px;
     border: 1px solid black;
 }
-      
+
 .navbar ul li {
     display: block;
     border-bottom:1px solid rgba(255,255,255,.3);
 }
-        
+
 .navbar ul li a{
     display: block;
 }
-        
-.navbar ul li:hover .children{
-    display: none;
-}
-        
+
 .navbar ul li .children{
     width: 100%;
     position: relative;
+    display: block;
+    left: 0;
 }
-        
+
 header nav ul li .children li a{
+    display: block;
     margin-left: 20px;
-}
-        
-header nav ul li .children li a i{
-    float: right;
 }
 
 #info1{

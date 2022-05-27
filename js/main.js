@@ -1,23 +1,3 @@
-$(document).ready(main);
-
-var contador = 1;
-function main(){
-    $('.menu_bar').click(function(){
-        if(contador==1){
-            $('nav').animate({left:'0'});
-            contador=0;    
-        } else {
-            contador=1;
-            $('nav').animate({left:'-100%'});
-            }
-    });
-
-//para mostrar y ocultar submenu
-    $('.submenu').click(function(){
-        $(this).children('.children').slideToggle();
-});
-};
-
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 const textarea = document.querySelectorAll('#formulario textarea');
