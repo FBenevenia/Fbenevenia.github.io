@@ -10,52 +10,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
 
     <title>Investigación Operativa</title>
-    <link rel="shortcut icon" href="./img/favicon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.jpg')}}" type="image/x-icon">
     
     <script src="https://kit.fontawesome.com/3a6a7a1eda.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="./CSS/estilos.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css')}}">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
 
     <header>
         <div id="banner">
-            <img src="./img/banner.png" alt="banner" id="img_banner">
+            <img src="{{ url_for('static', filename='img/banner.png')}}" alt="banner" id="img_banner">
         </div>
         <nav class="navbar">
             <input type="checkbox" name="check" id="check">
             <label for="check" class="checkbtn"><i class="fa-solid fa-bars"></i> Menu</label>            
             <ul>
-                <li><a class="active" href="./index.html"><i class="fa fa-fw fa-home"></i> Home</a></li>
+                <li><a class="active" href="{{url_for('home')}}"><i class="fa fa-fw fa-home"></i> Home</a></li>
                 <li class="submenu">
                     <a href="#"><i class="fa fa-fw fa-search"></i> Contenido Teórico<i class="fa-solid fa-caret-down"></i> </a>
                     <ul class="children">
-                        <li><a href="./Procesos_Estocasticos.html">Procesos Estocásticos</a></li>
-                        <li><a href="./Simulacion.html">Simulación</a></li>
+                        <li><a href="{{url_for('index')}}">Procesos Estocásticos</a></li>
+                        <li><a href="{{url_for('simulacion')}}">Simulación</a></li>
                     </ul>
                 </li>
-                <li><a href="./formulario.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+                <li><a href="{{url_for('formulario')}}"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+                {% if g.user %}
+                <li><span>{{g.user.usuario}}</span></li>
+                <li><a href="{{url_for('logout')}}" class="e">Cerrar Sesión</a></li>
+                {% if g.user.usuario==admin %}
+                <li><a href="{{url_for('admin')}}"><i class="fa fa-fw fa-envelope"></i> Admin de Consultas</a></li>
+                {% endif %}
+                {% else %}
+                <li><a href="{{url_for('register')}}" class="c">Registrar usuario</a></li>
+                <li><a href="{{url_for('login')}}" class="m">Iniciar Sesión</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
     <main id="main">
         <div class="container">
             <div class="card">
-                <figure><img src="./img/pestocasticos.png" alt="Procesos_Estocasticos"></figure>
+                <figure><img src="{{ url_for('static', filename='img/pestocasticos.png')}}" alt="Procesos_Estocasticos"></figure>
                 <div class="contenido">
                     <h3>Procesos Estocásticos</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit laudantium voluptates ratione, quaerat illo exercitationem sint totam cupiditate molestias dicta quam expedita praesentium consectetur sed excepturi dolores dolorem ducimus aperiam!</p>
-                    <a href="./Procesos_Estocasticos.html">Ingresar</a>
+                    <a href="{{url_for('index')}}">Ingresar</a>
                 </div>
             </div>
             <div class="card">
-                <figure><img src="./img/simulacion.jpg" alt="Simulacion"></figure>
+                <figure><img src="{{ url_for('static', filename='img/simulacion.jpg')}}" alt="Simulacion"></figure>
                 <div class="contenido">
                     <h3>Simulación</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit laudantium voluptates ratione, quaerat illo exercitationem sint totam cupiditate molestias dicta quam expedita praesentium consectetur sed excepturi dolores dolorem ducimus aperiam!</p>
-                    <a href="./Simulacion.html">Ingresar</a>
+                    <a href="{{url_for('simulacion')}}">Ingresar</a>
                 </div>
             </div>
         </div>
@@ -70,7 +80,7 @@
         <p>Autor: Florencia Benevenia</p>
     </footer>
 
-    <script src="./js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 
 </body>
 </html>

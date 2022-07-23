@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <title>Investigación Operativa</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.jpg')}}" type="image/x-icon">
+    
+    <script src="https://kit.fontawesome.com/3a6a7a1eda.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css')}}">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+
+    <header>
+        <div id="banner">
+            <img src="{{ url_for('static', filename='img/banner.png')}}" alt="banner" id="img_banner">
+        </div>
+        <div>
+            <h1>Iniciar Sesión</h1>
+        </div>
+        <nav>
+            <a href="{{url_for('register')}}" class="crear">Registrar usuario</a>
+        </nav>
+    </header>
+    <main>
+
+        <section>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <form method="POST">
+                <label for="usuario">Nombre de Usuario</label>
+                <input type="text" name="usuario" id="usuario" required>
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" id="password" required>
+                <input type="submit", value="Iniciar Sesión" class="crear">
+            </form>
+        </section> 
+    </main>
+    <footer>
+        <nav>
+            <a href="https://facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </nav>
+        <p>Derechos Reservados 2022</p>
+        <p>Autor: Florencia Benevenia</p>
+    </footer>
+
+</body>
+</html>

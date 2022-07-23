@@ -10,44 +10,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
 
     <title>Investigación Operativa</title>
-    <link rel="shortcut icon" href="./img/favicon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.jpg')}}" type="image/x-icon">
     
     <script src="https://kit.fontawesome.com/3a6a7a1eda.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="./CSS/estilos.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css')}}">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
     <header>
         <div id="banner">
-            <img src="./img/banner.png" alt="banner" id="img_banner">
+            <img src="{{ url_for('static', filename='img/banner.png')}}" alt="banner" id="img_banner">
         </div>
         <nav class="navbar">
             <input type="checkbox" name="check" id="check">
             <label for="check" class="checkbtn"><i class="fa-solid fa-bars"></i> Menu</label>            
             <ul>
-                <li><a class="active" href="./index.html"><i class="fa fa-fw fa-home"></i> Home</a></li>
+                <li><a class="active" href="{{url_for('home')}}"><i class="fa fa-fw fa-home"></i> Home</a></li>
                 <li class="submenu">
-                    <a href="./presentacion.html"><i class="fa fa-fw fa-search"></i> Contenido Teórico<i class="fa-solid fa-caret-down"></i> </a>
+                    <a href="{{url_for('presentacion')}}"><i class="fa fa-fw fa-search"></i> Contenido Teórico<i class="fa-solid fa-caret-down"></i> </a>
                     <ul class="children">
-                        <li><a href="./Procesos_Estocasticos.html">Procesos Estocásticos</a></li>
-                        <li><a href="./Simulacion.html">Simulación</a></li>
+                        <li><a href="{{url_for('index')}}">Procesos Estocásticos</a></li>
+                        <li><a href="{{url_for('simulacion')}}">Simulación</a></li>
                     </ul>
                 </li>
-                <li><a href="./formulario.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+                <li><a href="{{url_for('formulario')}}"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+                {% if g.user %}
+                <li><span>{{g.user.usuario}}</span></li>
+                <li><a href="{{url_for('logout')}}" class="e">Cerrar Sesión</a></li>
+                {% if g.user.usuario==admin %}
+                <li><a href="{{url_for('admin')}}"><i class="fa fa-fw fa-envelope"></i> Admin de Consultas</a></li>
+                {% endif %}
+                {% else %}
+                <li><a href="{{url_for('register')}}" class="c">Registrar usuario</a></li>
+                <li><a href="{{url_for('login')}}" class="m">Iniciar Sesión</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
     <main>
         <h2 id="contacto">Contacto</h2>
-        <form action="" class="formulario" id="formulario">
+        <h4>Para ver los mensajes enviados loguearso con usuario: admin y contraseña: admin</h4>
+        <form class="formulario" id="formulario" method="POST">
 
             <!-- Grupo Nombre-->
             <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="formulario__label">Nombre: </label>
                 <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese aquí su nombre">
+                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese aquí su nombre" required>
                 <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
                 </div>
             <p class="formulario__input-error">Su nombre debe tener entre 1 y 40 dígitos y solo puede usar letras y espacios, puede llevar acentos.</p>
@@ -57,7 +70,7 @@
             <div class="formulario__grupo" id="grupo__apellido">
                 <label for="apellido" class="formulario__label">Apellido: </label>
                 <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Ingrese aquí su apellido">
+                <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Ingrese aquí su apellido" required>
                 <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
                 </div>
             <p class="formulario__input-error">Su apellido debe tener entre 1 y 40 dígitos y solo puede usar letras y espacios, puede llevar acentos.</p>
@@ -67,7 +80,7 @@
             <div class="formulario__grupo" id="grupo__telefono">
                 <label for="telefono" class="formulario__label">Teléfono: </label>
                 <div class="formulario__grupo-input">
-                <input type="tel" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese aquí su número de teléfono">
+                <input type="tel" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese aquí su número de teléfono" required>
                 <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
                 </div>
             <p class="formulario__input-error">No utilizar guiones, solo se aceptan entre 7 y 14 números</p>
@@ -77,7 +90,7 @@
             <div class="formulario__grupo" id="grupo__mail">
                 <label for="mail" class="formulario__label">Mail: </label>
                 <div class="formulario__grupo-input">
-                <input type="email" class="formulario__input" name="mail" id="mail" placeholder="Ingrese aquí su correo electrónico">
+                <input type="email" class="formulario__input" name="mail" id="mail" placeholder="Ingrese aquí su correo electrónico" required>
                 <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
                 </div>
             <p class="formulario__input-error">Por favor ingresar una dirección de correo electrónica correcta</p>
@@ -87,7 +100,7 @@
             <div class="formulario__grupo2" id="grupo__asunto">
                 <label for="asunto" class="formulario__label">Asunto: </label>
                 <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="asunto" id="asunto" placeholder="Ingrese aquí el motivo de su consulta">
+                <input type="text" class="formulario__input" name="asunto" id="asunto" placeholder="Ingrese aquí el motivo de su consulta" required>
                 <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
                 </div>
             <p class="formulario__input-error">Por favor utilizar hasta 50 dígitos.</p>
@@ -97,7 +110,7 @@
             <div class="formulario__grupo2" id="grupo__descripcion">
                 <label for="descripcion" class="formulario__label">Descripción: </label>
                 <div class="formulario__grupo-input">
-                <textarea class="formulario__input" name="descripcion" rows="10" cols="30" id="descripcion" placeholder="Ingrese aquí en detalle su consulta"></textarea>
+                <textarea class="formulario__input" name="descripcion" rows="10" cols="30" id="descripcion" placeholder="Ingrese aquí en detalle su consulta" required></textarea>
                 <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
                 </div>
             <p class="formulario__input-error">Por favor utilizar hasta 500 dígitos.</p>
@@ -108,8 +121,8 @@
             </div>
 
             <div class="formulario__grupo formulario__grupo-btn-enviar">
-                <button type="submit" class="formulario__btn">Enviar</button>
-                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado correctamente.</p>
+                    <input type="submit" value="Guardar" class="crear">
+                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado correctamente.</p>
             </div>
         </form>
     </main>
@@ -125,7 +138,7 @@
         <p>Autor: Florencia Benevenia</p>
     </footer>
 
-    <script src="./js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 
 </body>
 </html>

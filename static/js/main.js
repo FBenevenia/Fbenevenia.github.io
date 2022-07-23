@@ -71,21 +71,7 @@ textarea.forEach((textarea) => {
     textarea.addEventListener('blur', validarFormulario);
 });
 
-formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if(campos.nombre && campos.apellido && campos.mail && campos.telefono && campos.asunto && campos.descripcion){
-        document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo') //ver si está bien//
-        formulario.reset();
-        document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo')
-       
-       setTimeout(() =>{
-           document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo')
-       }, 10000);
-        document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
-            icono.classList.remove('formulario__grupo-correcto')
-        });
-    } else {
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo')
 
-    }
-});//si llego, ver cómo hacer para que cuando registre 1 valor bien completado se vaya el mensaje de error y revisar q nunca envíe un formulario vacío//
+
+
+

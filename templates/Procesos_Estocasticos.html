@@ -10,33 +10,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
 
     <title>Investigación Operativa</title>
-    <link rel="shortcut icon" href="./img/favicon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.jpg')}}" type="image/x-icon">
     
     <script src="https://kit.fontawesome.com/3a6a7a1eda.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="./CSS/estilos.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css')}}">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
 
     <header>
         <div id="banner">
-            <img src="./img/banner.png" alt="banner" id="img_banner">
+            <img src="{{ url_for('static', filename='img/banner.png')}}" alt="banner" id="img_banner">
         </div>
         <nav class="navbar">
             <input type="checkbox" name="check" id="check">
             <label for="check" class="checkbtn"><i class="fa-solid fa-bars"></i> Menu</label>            
             <ul>
-                <li><a class="active" href="./index.html"><i class="fa fa-fw fa-home"></i> Home</a></li>
+                <li><a class="active" href="{{url_for('home')}}"><i class="fa fa-fw fa-home"></i> Home</a></li>
                 <li class="submenu">
-                    <a href="./presentacion.html"><i class="fa fa-fw fa-search"></i> Contenido Teórico<i class="fa-solid fa-caret-down"></i> </a>
+                    <a href="{{url_for('presentacion')}}"><i class="fa fa-fw fa-search"></i> Contenido Teórico<i class="fa-solid fa-caret-down"></i> </a>
                     <ul class="children">
-                        <li><a href="./Procesos_Estocasticos.html">Procesos Estocásticos</a></li>
-                        <li><a href="./Simulacion.html">Simulación</a></li>
+                        <li><a href="{{url_for('index')}}">Procesos Estocásticos</a></li>
+                        <li><a href="{{url_for('simulacion')}}">Simulación</a></li>
                     </ul>
                 </li>
-                <li><a href="./formulario.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+                <li><a href="{{url_for('formulario')}}"><i class="fa fa-fw fa-envelope"></i> Contacto</a></li>
+                {% if g.user %}
+                <li><span>{{g.user.usuario}}</span></li>
+                <li><a href="{{url_for('logout')}}" class="e">Cerrar Sesión</a></li>
+                {% if g.user.usuario==admin %}
+                <li><a href="{{url_for('admin')}}"><i class="fa fa-fw fa-envelope"></i> Admin de Consultas</a></li>
+                {% endif %}
+                {% else %}
+                <li><a href="{{url_for('register')}}" class="c">Registrar usuario</a></li>
+                <li><a href="{{url_for('login')}}" class="m">Iniciar Sesión</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -59,7 +70,7 @@
             <br><br>
             <div class="container1">
                 <h2 class="titulo" id="Clasificacion">Clasificación de Procesos Estocásticos</h2>
-                <img src="./img/PE1.png" alt="clasificacion" id="anexo1">
+                <img src="{{ url_for('static', filename='img/PE1.png')}}" alt="clasificacion" id="anexo1">
                 <p class="apunte">En los Procesos aleatorios puros se cumple P(x_(t+Δt),t+Δt). Es decir, la probabilidad de que el sistema se encuentre en un estado cualquiera xt+𝛥t es independiente de los estados anteriores. Teniendo en cuenta lo antes mencionado, es un proceso sin memoria porque la probabilidad de un estado no depende de la historia de los estados en etapas anteriores. Ej. Control de la calidad de la materia prima recibida en lotes independientes muestreados al azar.</p>
                 <br>
                 <p class="apunte">En los Procesos con memoria o de orden superior se necesita saber más que el estado inmediatamente anterior para predecir qué pasará en un estado futuro. Se cumple lo siguiente:</p>
@@ -75,14 +86,43 @@
                 <p class="apunte">Con referencia específicamente a las cadenas de Markov de parámetros de tiempo discretos o continuos, diremos que son Homogéneas las cadenas cuya probabilidad condicional de transición del estado ‘i’ al estado ‘j’ sólo depende del un 𝛥t</p>
                 <p class="apunte">Es decir, las probabilidades de transición son estacionarias lo que implica que no cambian con el tiempo.</p>
             </div>
+            <br><br>
+            <article id="app">
+                <header>
+                    <h2 id="Comentarios">Espacio de consultas/comentario</h2>
+                </header>
+    
+                {% block content %}    
+                    <div><a href="{{url_for('create_postPE')}}" class="crear">Nuevo</a></div>
+                {% for PostPE in PostPEs %}
+                    <article class="post">
+                    <div>
+                        <h3>{{PostPE.titulo}}</h3>
+                        Creado por {{ PostPE.author }} el {{PostPE.creado.strftime('%d-%m-%Y')}}
+                        <p>{{PostPE.body}}</p>
+                    </div>
+                    <div>
+                        {% if PostPE.author|int==g.user.id %}
+                        <span> <a href="{{url_for('update', id=PostPE.id)}}">Modificar</a></span>
+                        <span><a href="{{url_for('delete', id=PostPE.id)}}">Eliminar</a></span>
+                        {% endif %}
+                    </div>
+                </article>
+                    {% endfor %}
+                    {% endblock %}
+            </article>
+            <br><br>
+    
         </section>
         <aside>
             <ul>
                 <li><a href="#Introduccion"><i class="fa-solid fa-arrow-right"></i> Introducción</a></li>
                 <li><a href="#Definiciones"><i class="fa-solid fa-arrow-right"></i> Definiciones</a></li>
                 <li><a href="#Clasificacion"><i class="fa-solid fa-arrow-right"></i> Clasificación</a></li>
+                <li><a href="#Comentarios"><i class="fa-solid fa-arrow-right"></i> Comentarios</a></li>
             </ul>
         </aside>    
+    
     </main>
     <footer>
         <nav>
@@ -94,7 +134,6 @@
         <p>Autor: Florencia Benevenia</p>
     </footer>
 
-    <script src="./js/main.js"></script>
-
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </body>
 </html>
