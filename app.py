@@ -59,11 +59,6 @@ class PostPE(db.Model):   # la clase PostPE hereda de db.Model
 db.create_all()  # crea las tablas
 #  ************************************************************
 
-@app.route('/')
-def indexs():
-    return "<h1>Corriendo servidor Flask</h1>"
-
-
 class UserSchema(ma.Schema):
     class Meta:
         fields=('id','usuario','password')
@@ -229,7 +224,7 @@ PostPE_schema=PostPESchema()            # para crear un producto
 PostPEs_schema=PostPESchema(many=True)  # multiples registros
 
 # crea los endpoint
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template('index.html')
 
