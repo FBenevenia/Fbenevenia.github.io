@@ -29,6 +29,10 @@ class User(db.Model):   # la clase Contacto hereda de db.Model
     def __repr__(self) -> str:
         return f'User: {self.usuario}'
 
+    def is_active(self):
+        return True
+
+
 class Contacto(db.Model):   # la clase Contacto hereda de db.Model     
     id=db.Column(db.Integer, primary_key=True)   #define los campos de la tabla
     nombre=db.Column(db.String(40))
@@ -116,6 +120,11 @@ def login():
             return redirect(url_for('index'))
         flash(error)
     return render_template('login.html')
+
+# crea los endpoint
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.before_request
 def load_logged_in_user():
@@ -222,11 +231,6 @@ class PostPESchema(ma.Schema):
         fields=('id','author','creado','titulo','body')
 PostPE_schema=PostPESchema()            # para crear un producto
 PostPEs_schema=PostPESchema(many=True)  # multiples registros
-
-# crea los endpoint
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 # crea los endpoint
 @app.route('/presentacion')

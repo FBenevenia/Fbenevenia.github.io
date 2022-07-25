@@ -23,7 +23,7 @@
 <body>
     <header>
         <div id="banner">
-            <img src="{{ url_for('static', filename='img/banner.png')}}" alt="banner" id="img_banner">
+            <img src="{{ url_for('static', filename='img/banner.png') }}" alt="banner" id="img_banner">
         </div>
         <nav class="navbar">
             <input type="checkbox" name="check" id="check">
@@ -41,7 +41,7 @@
                 {% if g.user %}
                 <li><span>{{g.user.usuario}}</span></li>
                 <li><a href="{{url_for('logout')}}" class="e">Cerrar Sesión</a></li>
-                {% if g.user.usuario==admin %}
+                {% if g.user.usuario=='admin' %}
                 <li><a href="{{url_for('admin')}}"><i class="fa fa-fw fa-envelope"></i> Admin de Consultas</a></li>
                 {% endif %}
                 {% else %}
@@ -138,7 +138,7 @@
         <p>Autor: Florencia Benevenia</p>
     </footer>
 
-    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>
