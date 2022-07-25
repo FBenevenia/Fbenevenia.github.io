@@ -1,4 +1,5 @@
 from tkinter import *
+import _tkinter
 import tkinter as tk
 from tkinter import ttk
 from datetime import datetime
