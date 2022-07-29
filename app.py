@@ -1,11 +1,6 @@
-from tkinter import *
-import _tkinter
-import tkinter as tk
-from tkinter import ttk
 from datetime import datetime
 from email.policy import default
 import functools
-from turtle import title
 from flask import Flask, flash ,jsonify, redirect, render_template,request,session,url_for,g,abort
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
